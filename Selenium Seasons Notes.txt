@@ -1,0 +1,1388 @@
+Selenium Automation
+
+
+====================================
+
+Day 14 - 1st July Saturday
+
+----------------------------------------
+
+Selenium Season -1 
+
+is an API(collection of jars) which helps in automating Web Apps
+
+https://www.selenium.dev/
+
+Selenium automates browsers. That's it!
+
+JAVA API ( jdk lib - which is a collection of jars)
+
+Previous Releases
+Here you can find a more complete list of Selenium releases.
+
+3.141.59
+
+selenium-server-standalone-3.141.59.jar
+
+how to add Selenium jar to your Java Project ?
+
+right click on Project --> build  path --> configure build path
+--> click on Libraries --> click on classpath --> click on Add External jars
+now navigate to the location where you have jars  -> click open
+--> click apply --> click Apply and close
+
+-----------------------------------------------------------------
+
+org.openqa.selenium
+
+WebDriver(I)
+
+-ImeHandler(I)
+-Navigation(I)
+-Options(I)
+-TargetLocator(I)
+-Timeouts(I)
+-Window(I)
+
+Selenium WebDriver - Tool 
+
+-------------------------------------
+Launching of different browsers
+
+Chrome browser
+
+IllegalStateException
+Exception in thread "main" java.lang.IllegalStateException: 
+The path to the driver executable must be set by the 
+webdriver.chrome.driver system property;
+ for more information,
+ see https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver. 
+ The latest version can be downloaded from http://chromedriver.storage.googleapis.com/index.html
+	at com.google.common.base.Preconditions.checkState(Preconditions.java:847)
+
+
+go to the below link
+
+https://chromedriver.chromium.org/downloads
+
+
+Chrome is up to date
+Version 114.0.5735.199 (Official Build) (64-bit)
+
+chromedriver_win32.zip
+
+-----------------------------------------------------
+
+webdriver manager fat jar
+
+
+https://github.com/bonigarcia/webdrivermanager/releases
+
+webdrivermanager-5.4.0-fat.jar
+
+WebDriverManager.chromedriver().setup();
+
+??????????????????????????????????????????????????
+
+Write script to launch 
+
+1. firefox browser
+2. edge browser  using all three techinques 
+????????????????????????????????????????????????????
+
+
+====================================
+
+Day 15 - 3rd July Monday
+
+----------------------------------------
+org.openqa.selenium
+
+WebDriver(I)
+
+-ImeHandler(I)
+-Navigation(I)
+-Options(I)
+-TargetLocator(I)
+-Timeouts(I)
+-Window(I)
+
+
+3 things for methods to remember
+
+1.what is the return-type
+2.what arguments/paramaters it takes
+3.overall what does this method do 									
+									
+------------------------------------------
+WebDriver methods (13)
+
+close()
+findElement(By)
+findElements(By)
+get(String)
+getCurrentUrl()
+getPageSource()
+getTitle()
+getWindowHandle()
+getWindowHandles()
+manage()
+navigate()
+quit()
+switchTo()
+
+------------------------------------------------
+get(String):void
+
+this method will launch the web app whose URL is given as String
+-------------------------------------------------
+close():void
+
+this will close the only one window or tab on which webdriver focus is 
+
+will not kill the chromedriver.exe 
+
+------------------------------------------------------------
+quit():void 
+
+-this method will close all the tabs/windows opened during the WebDriver session
+- this will kill chromedriver.exe task or process running in background
+
+-------------------------------------------------------------------------
+getTitle():String
+
+this will return the title of window on which webdriver focus is 
+
+--------------------------------------------------------------------------
+
+getPageSource():String
+
+this will return the html source code  of window on which webdriver focus is 
+
+--------------------------------------------------------------------------
+
+getCurrentUrl():String
+
+this will returns url of window on which webdriver focus in form of string
+
+---------------------------------------------------------------------------
+getWindowHandle():String
+
+whenever a tab/window opened by webdriver , there will be unique ID given
+for that window/tab (which is in hexa decimal format)
+
+
+this will returns window ID of tab/windowon which webdriver focus in form of string
+
+e.g A05CE3AE38BCB2D66D860130BCF8585E
+
+---------------------------------------------------------------------------
+
+getWindowHandles(): Set<String>
+
+this will be discussed in selenium Season -2 (Multiple Window handling concept)
+
+------------------------------------------------------------------------------
+navigate(): Navigation
+
+to navigate the flow forward or back or refresh or launch app 
+
+back():void ==> driver.navigate().back();
+forward():void
+refresh():void
+to(String):void
+to(URL):void
+
+------------------------------------------------------------------------------
+manage(): Options
+
+
+manage method will help in dealing with cookies , windows (maximimising ,minimising etc),
+synchromnization(waits)
+
+
+addCookie(Cookie)
+deleteAllCookies()
+deleteCookie(Cookie)
+deleteCookieNamed(String)
+getCookieNamed(String)
+getCookies()
+ime()
+logs()
+timeouts()
+-------------
+window():Window(I)
+					
+fullscreen()
+getPosition()
+getSize()
+maximize()
+setPosition(Point)
+setSize(Dimension)
+------------------------------------------------------------------------
+
+switchTo(): TargetLocator	
+
+This will be used to swith the control/focus of WebDriver to other tab/window or frame or alerts
+
+activeElement()
+alert()
+defaultContent()
+frame(int)
+frame(String)
+frame(WebElement)
+parentFrame()
+window(String)				
+
+-----------------------------------------------
+
+findElement(By):WebElement
+findElements(By):List<WebElement>
+
+
+
+====================================
+
+Day 16 - 4th July Tuesday
+
+----------------------------------------
+
+WebDriver Methods (cont ..)
+
+findElement(By):WebElement
+
+this method will focus on the Element which is meeting the locator strategy
+
+
+findElements(By):List<WebElement>
+
+this method will focus on the Elements which is meeting the locator strategy
+
+
+
+anything that is present in webpage is nothing but WebElement
+to find any WebElement we need to have some locator .
+**************************************
+Locators in WebDriver (8):
+**************************************
+className(String): By
+cssSelector(String): By
+id(String):By
+linkText(String):By
+name(String):By
+partialLinkText(String):By 
+tagName(String):By
+xpath(String):By
+
+===================
+HTML Terminology
+===================
+
+<tagName attribute1="value of attribute1"  attribute2="value of attribute2" ...
+         attributen="value of attributen"> 
+		 
+		 or
+		 
+<tagName attribute1="value of attribute1"  attribute2="value of attribute2" ...
+         attributen="value of attributen"> text on element </tagname>
+
+		 
+		 
+<input type="text" name="username" id="username" 
+       class="login_input" value="" fdprocessedid="vugwod">
+	   
+<a href="ForgotPassword.php">Forgot Password?</a>
+
+Based on HTML terminology we can classify locators as below
+
+i) based on attirbutes 
+
+id(String):By  ==> most prefered since this will be unique 
+
+name(String):By ==> second prefered locator
+
+className(String): By ==> not prefered for single weblement 
+
+ii) based on link text 
+
+
+the text present in between > and < for anchor tagNames
+
+linkText(String):By
+
+partialLinkText(String):By 
+
+these locators mainly meant for links 
+
+in HTML , the elements having tagname "a" are called links 
+
+a tagname is also called as anchor tagName
+
+
+
+iii) using tagName
+
+tagName(String):By 
+
+this is not prefered for single element , only used for multiple elements
+
+
+<img src="images/home.gif" width="118" height="23" border="0">
+
+
+iv) based on combination of tagName , attributes and text on elements
+
+xpath(String):By
+
+cssSelector(String): By
+
+//img[contains(@src,'home.gif')] ==> xpath
+
+body > div:nth-child(5) > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(4) > td > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(4) > td > a > img ==> css selector
+
+
+*************************************************
+WebElement Methods (16)
+*************************************************
+
+clear()
+click()
+findElement(By)
+findElements(By)
+getAttribute(String)
+getCssValue(String)
+getLocation()
+getRect()
+getSize()
+getTagName()
+getText()
+isDisplayed()
+isEnabled()
+isSelected()
+sendKeys(CharSequence...)
+submit()
+
+-----------------------------------------------------------------
+sendKeys(CharSequence...):void 
+CharSequence... is nothing but string 
+
+this method is used to type text on any WebElement 
+
+-----------------------------------------------------------------
+
+click():void 
+
+this method is used to click WebElement (like link or button etc ..)
+
+-----------------------------------------------------------------
+
+clear():void
+
+this method will clear the text present on textboxes 
+
+
+---------------------------------------------------------
+
+getText():String
+
+tis method will return the text present on WebElement in form of String
+
+-------------------------------------------------------
+
+getLocation(): Point
+
+this method is used to find the x,y coordinates of Left most corner WebElement
+getLocation().getX();
+getLocation().getY();
+
+--------------------------------------------------------
+
+getSize(): Dimension
+
+this method is used to get height and width of WebElement
+getSize().getHeight();
+getSize().getWidth();
+---------------------------------------------------------
+
+getRect():Rectangle
+
+this method is used to get both height and width and also
+x and y cordinates of WebElement
+
+
+--------------------------------------------------------
+
+====================================
+
+Day 17 - 5th July Wednesday
+
+----------------------------------------
+
+
+getAttribute(String):String
+
+this method will retrive the attribute value in form of String 
+
+
+case 1 : attribute present with value 
+      o/p : value of attribute
+	  
+System.out.println( driver.findElement(By.linkText("New User Register Here")).getAttribute("href"));
+https://adactinhotelapp.com/Register.php
+			  
+
+case 2: attribute is not present 
+	  o/p : empty string
+	  o/p : null in some cases
+	  
+case 3: attribute is present and value not assigned 
+	  o/p : true 
+	  
+--------------------------------------------
+
+getCssValue(String):String	  
+	  
+this method is used to get CSS values of weblement ( color 	, font-weight , font-text etc)
+
+System.out.println(driver.findElement(By.className("build_title")).getCssValue("color"));
+
+rgba(153, 0, 0, 1)
+
+---------------------------------------------  
+getTagName():String
+
+this method will retrive the tagname of webelement
+
+----------------------------------------------
+isDisplayed(): boolean
+
+this method will return true if element is present in DOM and visible
+else false if present in DOM and not visible
+----------------------------------------------
+isEnabled():boolean
+
+is to check the element is interactable
+
+-----------------------------------------------
+isSelected():boolean
+
+this method is used to check an item/option is selected 
+from a dropdown/checkbox/radio button 
+
+-------------------------------------------------
+
+submit():void 
+
+this method will submit the form to server 
+
+---------------------------------------------------
+
+findElement(By):WebElement
+findElements(By):List<WebElement>
+ 
+
+====================================
+
+Day 18 - 6th July Thursday
+
+----------------------------------------
+
+WebDriver(I) (13) - RemoteWebDriver(C)
+
+xpath
+
+WebElement(I) (16) - RemoteWebElement (C)
+
+13+8+16
+---------------------------------------------------
+Links Testing :
+
+tagname a 
+
+mandatory attribute : href
+
+--------------------------------------------------
+Dropdown Testing
+
+To select some item or option from Dropdown 
+
+i) using conventional way (using sendkeys)
+
+ii) Select Class
+
+org.openqa.selenium.support.ui
+
+constructor : Select(WebElement)
+
+Select s1=new Select(WebElement);
+
+selectByIndex(int):void  index to be calcuated manually , starts from zero (Not prefered)
+selectByValue(String)
+selectByVisibleText(String)
+
+??????????????????????????????????????
+
+launch https://www.facebook.com/
+
+Click "Create New Account"
+
+Select below date date using 2 ways 
+
+2 Oct 2000
+
+???????????????????????????????????????
+
+Xpath Writing Techniques
+
+xpath means XML path , it's a query lang to find XML nodes
+
+HTML is an implementation of XML 
+
+						Xpath
+
+
+		1)Absolute					2)Relative
+		
+Absolute : the path starts from root
+
+/html/body/table[2]/tbody/tr/td[2]/form/table/tbody/tr[2]/td[2]/input
+
+/html/body/table[2]/tbody/tr/td[2]/form/table/tbody/tr[2]/td[2]/input 
+
+root is hmtl tagName
+
+Relative : can be subset of absolute xpath or it can start at any from HTML page 
+
+==================
+HTML Terminology
+===================
+
+<tagName attribute1="value of attribute1"  attribute2="value of attribute2" ...
+         attributen="value of attributen"> 
+		 
+		 or
+		 
+<tagName attribute1="value of attribute1"  attribute2="value of attribute2" ...
+         attributen="value of attributen"> text on element </tagname>
+
+
+1) xpath based on tagname and attribute
+
+
+//tagname[@attribute='value of attribute']
+
+//input[@name='password']
+
+2) xpath based on tagname and linktext or text on WebElement
+
+
+//tagname[text()='text on element']
+
+//span[text()='Loans']
+
+
+3)xpath using contains function
+
+
+//tagname[contains(@attribute,'subset of value of attribute')]
+
+//img[contains(@src,'google-play')]
+
+
+====================================
+
+Day 19 - 7th July Friday
+
+----------------------------------------
+
+Assignment
+
+
+	//a[text()='Create new account']
+	
+	
+
+====================================
+
+Day 23 - 12th July Wednesday
+
+----------------------------------------
+	
+Selenium Season -2
+
+
+Links Testing
+
+findElement(By):WebElement
+findElements(By):List<WebElement>
+
+
+<a href="ForgotPassword.php">Forgot Password?</a>
+
+<a href="Register.php">New User Register Here</a>
+
+<a href="mailto:info@adactin.com">info@adactin.com</a>
+
+tagname a 
+
+StaleElementReferenceException:
+
+ org.openqa.selenium.StaleElementReferenceException:
+ 
+ stale element reference: stale element not found
+ 
+ DOM - Document Object Model 
+ 
+ this will tell how the HTML nodes are structured
+ 
+ Reason:
+ 
+ this exception occured due to change in DOM structure due to some action on Page 
+ 
+ Solution:
+ 
+ Reinitialize the WebElement or WebElement again after the DOM Structure
+
+
+???????????????????????????????????????????
+Assignment 1:
+
+in https://www.icicibank.com/ 
+find how many links are there and print them 
+
+Assignment 2:
+
+in https://www.icicibank.com/ 
+find how many links are there in "CALCULATORS" module and print href and 
+url 
+?????????????????????????????????????????????
+
+
+
+====================================
+
+Day 24 - 13th July Thursday
+
+----------------------------------------
+	
+
+
+Exception in thread "main" org.openqa.selenium.ElementNotInteractableException:
+ element not interactable
+ 
+ Reason : Element is not visible 
+ 
+ Solution : make some action like scrolling or mouse hovering 
+ 
+??????????????????????????????????????????????
+Assignment 2:
+
+in  https://demo.opencart.com/ 
+find how many links are there in "Customer Service" module and print href and 
+url and test the links
+?????????????????????????????????????????????
+
+
+----------------------------------
+Dropdown Testing
+
+
+Select
+
+	Select s1=new Select(drop);
+		
+		List<WebElement> allItems=s1.getOptions();
+		
+****
+
+TestNG framework
+
+							Frameworks 
+							
+							
+		Predefined or						User-defined
+		Unit Testing
+							
+based on lang :
+
+java : junit , testNG 
+
+.net : nunit
+
+python : pytest							
+
+testNG :  TestNG , NG next generation
+
+testNG is an aPI (jar)
+
+We can install or add TestNG as a plugin in Eclipse
+
+how to add ?
+
+-------------------------------------
+Annotations in TestNG 
+
+
+@Test  - test case
+
+in TestNG , if you  have moe than one @Test methods , 
+then execution will be according to alphbetic order of method name 
+
+
+changePasswordTest
+loginTest
+registrationTest
+
+Parameters for annotations:
+
+
+
+====================================
+
+Day 25 - 14th July Friday
+
+----------------------------------------
+	
+@BeforeMethod  - for some pre conditions( browser start , etc..)  which are common to many tests
+
+we can under @BeforeMethod 
+
+this annotated method will be executed before each and every test in class 
+
+@AfterMethod -  for some post conditions(browser closing , reports generation etc..)  which are common to many tests
+
+we can under @BeforeMethod 
+
+this annotated method will be executed after each and every test in class 
+
+---------------------------
+Miscellenous Action
+
+MouseHovering :
+
+
+org.openqa.selenium.interactions
+
+Actions 
+
+Actions(Keyboard)  == getting depricated
+Actions(Keyboard, Mouse) == getting depricated
+Actions(WebDriver)
+
+Actions action=new Actions(WebDriver);
+
+moveToElement(WebElement)
+moveToElement(WebElement, int, int)
+
+
+perform():void ==> for execution of Miscellenous actions
+
+build():Action ==> this will integrate all the Miscellenous actions
+
+click(WebElement):Actions
+
+?????????????????????????????
+Assignment
+?????????????????????????????
+In below app
+https://demo.opencart.com/
+
+mousehover on "Laptops & Notebooks"
+
+then click on "Show All Laptops & Notebooks"
+
+then print how many items are displayed
+??????????????????????????????????????????????
+
+-------------------------------
+Drag And Drop
+
+dragAndDrop(WebElement, WebElement)
+
+FAILED: dragAndDropTest
+org.openqa.selenium.NoSuchElementException: no such element:
+ Unable to locate element: {"method":"xpath","selector":"//div[@id='draggable']"}
+ 
+NoSuchElementException:
+
+Reason 1 : if element is present but locator is given wrong and you are trying find 
+Solution : rectify the locator or correct the locator
+
+Reason 2 : if element is present yet loaded into DOM 
+Solution : we need to use Wait concept
+
+Reason 3: if element is present in DOM but it exists in some frame 
+Solution : switch to frame 
+
+
+
+dragAndDropBy(WebElement, int, int)
+
+here firt int is x-axis offset
+second int is y-axis offset
+
+
+?????????????????????????????
+Assignment
+?????????????????????????????
+in 
+https://emicalculator.net/
+
+drag "Home Loan Amount" to 75 Lakhs
+
+drag "Interest Rate" to 12.5%
+
+drag Loan Tenure to 15 years
+
+then validate EMI amaount as ₹92,439
+
+???????????????????????????????????????
+
+-------------------------------
+contextClick() = will rigth click on page corner
+contextClick(WebElement) = this will peform rigth click on WebElement
+
+---------------------------------
+doubleClick() == this will double click where cursor is present
+doubleClick(WebElement) == this will peform double click on WebElement
+
+--------------------------------------
+
+
+
+====================================
+
+Day 26 - 15th July Saturday
+
+----------------------------------------
+
+
+switchTo():TargetLocator
+
+activeElement()
+alert()
+defaultContent()
+frame(int)
+frame(String)
+frame(WebElement)
+parentFrame()
+window(String)
+
+
+
+for Multiple window/tab Handling :
+
+
+driver.switchTo().window(String);
+
+here String is nothing but Window Id of any window/tab
+
+getWindowHandle():String
+getWindowHandles():Set<String>
+
+//span[text()='Games']/parent::span/parent::button
+or
+//span[text()='Games']/ancestor::button
+
+
+Adactin Hotel App - Apps on Google Play
+
+TestFlight - Apple
+
+?????????????????????????????????????????
+Assignment
+?????????????????????????????????????????
+in
+https://www.24hourfitness.com/
+Click on "Facebook" logo 
+and switch to that tab and click on "Login in"
+and switch back to home page 
+Click on "Instagram" logo 
+and switch to that tab and click on "Login in"
+and switch back to home page
+Click on "Youtube" logo 
+and switch to that tab and click on "About"
+and switch back to home page
+????????????????????????????????????????????
+
+
+------------------------------------------
+Multipl Frames or Frame Handling
+------------------------------------------
+
+Frame is a UI terminology to develop web components
+
+how to find wheter there is frames used in Web Page or not ?
+
+find tagname starting with frame or iframe
+
+frame is used in older HTML
+iframe is used in newer HTML
+		
+
+frame(int) ==> here int is an index of frame , which we should calcuate manually starts from zero
+frame(String) ==> here String is id or name attribute value only 
+frame(WebElement) ==> here we pass iframe WebElement
+
+defaultContent() : this will switch the focus from any frame to Page
+parentFrame() : this will switch the focus from child frame to parentFrame	
+
+//font[contains(text(),'Hate Frames Page')]/parent::a
+
+<iframe src="allclasses-frame.html" name="packageFrame" title="All classes and interfaces (except non-static nested types)"></iframe>
+
+
+
+====================================
+
+Day 27 - 17th July Monday
+
+----------------------------------------
+
+xpath writing techinques
+
+here 
+
+//span[@tabindex='0']  ==>  1 of 3
+
+used index when you have same xpath for more elements 
+
+
+(//span[@tabindex='0'])[1]  1 of 1 
+
+(//span[@tabindex='0'])[2]  1 of 1 
+
+(//span[@tabindex='0'])[3]  1 of 1 
+
+------------------------------------
+Alerts Handling
+
+Alert(I)
+
+accept():void ==> this will click "Ok" button on alert
+dismiss(): void ==> this will click "Cancel" button on alert
+getText() : String ==> this will return the alert message in string format
+sendKeys(String) : void ==>this will be used too enter some text on alert text box
+
+switchTo():TargetLocator
+
+alert():Alert
+
+Alert al=driver.switchTo().alert();
+
+Alerts :
+
+1) Simple
+2) Confirmation
+3) Prompt alert
+
+
+org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+
+????????????????????????????????????????
+Assignment 1
+
+in  https://demo.guru99.com/v4/
+
+use below credentials to login
+
+User ID :	mngr266311
+Password :	
+
+click on "Delete Customer"
+
+enter some "Customer ID" and click on Submit
+
+switchTo to alert click "ok"
+
+and again switchTo new alert and click "ok"
+
+???????????????????????????????????????????????
+
+Assignment 2
+
+1. Navigate to URL : "http://demo.guru99.com/test/guru99home/"
+2. Click on the "JMeter Made easy" image.
+3. Switch to the newly appeared window.
+4. Scroll to the bottom of the screen.
+5. Verify the top tutorials values present on the screen.
+
+???????????????????????????????????????????????????
+
+How to take screenshot ?
+
+TakesScreenshot(I)
+
+getScreenshotAs(OutputType<X>):X 
+
+BASE64 : OutputType<String>
+BYTES : OutputType<byte[]>
+FILE : OutputType<File>
+
+
+File srcFile=((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		
+		FileUtils.copyFile(srcFile, new File("AdactinHomePage"+date+".png"));
+		
+		
+-----------------------------------------------------------------
+
+JavaScriptExecutor
+
+JavascriptExecutor(I)
+
+executeAsyncScript(String, Object...)
+
+
+executeScript(String, Object...)
+
+here String is javascript statement
+
+Object...  varaible agruments (vargs )
+
+
+
+====================================
+
+Day 28 - 18th July Tuesday
+
+----------------------------------------
+
+
+
+window.scrollBy(0,document.body.scrollHeight);
+
+org.openqa.selenium.InvalidSelectorException: invalid selector: 
+Unable to locate an element with the xpath expression https://www.facebook.com/ 
+because of the following error:
+
+
+
+-------------------------------------------------------
+****************
+Waits or Synchronization point or timeouts 
+
+org.openqa.selenium.NoSuchElementException: no such element: 
+Unable to locate element: {"method":"xpath","selector":"//input[@name='firstname']"}
+ 
+ 
+ 1) Hard Wait
+ 
+ Thread.sleep(2000); ==> this is a java concept (not encourage)
+ 
+ 2) Implicit Wait 
+ 
+ will wait until the presence of element in DOM 
+ 
+ 
+ driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+ 
+ this statement is applied or implied for all driver.findElement statements
+ 
+ where webdriver will wait for element for upto 30 seconds
+ 
+ if the element is found within 2 seconds then it won't waste the remaining 28 seconds 
+ 
+ 
+ 3)Explicit Wait / conditional based wait 
+ 
+ 
+ 
+ (//a[contains(@href,'gold-and-silver')])[3]
+ 
+ //span[@id='spinner']
+ 
+ Wait(I) : 
+ until
+ 
+ WebDriverWait(C)
+ 
+ WebDriverWait(WebDriver, long) 1; here long represents no of second to meet some conditons
+ 
+ 
+ ExpectedConditions(C)
+ 
+ 
+ invisibilityOfElementLocated(By)
+ 
+ 
+
+====================================
+
+Day 29 - 19th July Wednesday
+
+----------------------------------------
+
+3 things can be improved frome Explicit Wait 
+
+1. in WebDriverWait constructor the 2nd paramater will take long value which
+   always represents SECONDS
+2. the polling time in WebDriverWait is always 500 millis 
+3. there is no inbuilt exception handling mechanism
+
+  
+
+FluentWait:
+
+1 . withTimeout(Duration) : 
+
+2. pollingEvery(Duration) 
+
+3. ignoring(ExceptionClass)
+
+
+Radio Button Validation:
+
+<input type="radio" name="group1" value="Milk">
+
+<input type="radio" name="group1" value="Butter" checked="">
+
+<input type="radio" name="group1" value="Cheese">
+
+//input[@name='group1']
+
+//td[@class='table5']/child::input
+or
+//td[@class='table5']/descendant::input
+
+
+-----------------
+WebTables
+
+HTML Terminology
+
+table  - for table
+th  - table header
+tbody - table body
+tr - row
+td - column
+
+in https://www.hdfcbank.com/personal/resources/rates
+
+
+//font[text()='Domestic / NRO / NRE FIXED DEPOSIT RATE')]/ancestor::div
+
+//table[@class='rates-table-main']/descendant::td[text()='46 - 60 days']
+
+
+//font[text()='Domestic / NRO / NRE FIXED DEPOSIT RATE']/ancestor::div[1]/following-sibling::div/descendant::td[text()='46 - 60 days']
+
+//font[text()='Domestic / NRO / NRE FIXED DEPOSIT RATE']/ancestor::div[1]/following-sibling::div/descendant::td[text()='46 - 60 days']/following-sibling::td[1]
+
+//font[text()='Domestic / NRO / NRE FIXED DEPOSIT RATE']/ancestor::div[1]/following-sibling::div/descendant::td[text()='46 - 60 days']/following-sibling::td[2]
+
+
+						WebTables
+						
+		static						Dynamic
+
+
+Static means always rows and columns are constant
+
+
+
+//table/tbody/tr[1]/td[1]/a  //table/tbody/tr[1]/td[2] .....//table/tbody/tr[1]/td[8]
+
+//table/tbody/tr[2]/td[1]/a
+
+:
+
+:
+
+
+
+//table/tbody/tr[36]/td[1]/a	
+
+	
+
+String part1="//table/tbody/tr[";
+String part2="]/td[";
+String part3="]";
+
+
+
+====================================
+
+Day 30 - 30th July Thursday
+
+----------------------------------------
+
+
+we will focus on table and get no of rows in it (using locator strategy tagName tr )
+
+again we will go to each row and find no of columns in it (using locator strategy tagName td )
+
+
+
+***
+Maven 
+
+Project management tool or Source control management tools 
+
+
+pom.xml (Project Object Model )
+
+how to download maven and configure :
+
+https://maven.apache.org/download.cgi
+
+Apache Maven 3.9.3 is the latest release
+
+apache-maven-3.9.3-bin.zip
+
+download above zip file and extract it
+
+
+for Configuration : 
+
+
+go to environemnt varibales
+
+
+set below variables
+
+
+MAVEN_HOME : till maven folder after unzipping 
+
+D:\FLM0730PM\softwares\apache-maven-3.9.3-bin\apache-maven-3.9.3
+
+M2_HOME : till bin folder 
+
+path : till bin folder
+
+how to check or confirm ?
+
+go to cmd 
+
+give below command
+
+mvn -version
+
+C:\Users\Riyaz>mvn -version
+Apache Maven 3.9.3 (21122926829f1ead511c958d89bd2f672198ae9f)
+Maven home: D:\FLM0730PM\softwares\apache-maven-3.9.3-bin\apache-maven-3.9.3
+Java version: 11.0.18, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-11
+Default locale: en_IN, platform encoding: Cp1252
+OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
+
+
+---------------
+New Maven Project
+
+Group Id: domain.projectname  e.g www.citibank.com ==> com.citibank 
+Artifact Id :  the project in which your are working 
+
+
+https://adactinhotelapp.com/
+
+Group Id: com.adactinhotelapp
+Artifact Id : FrameworkAutomation
+
+
+src/main/java   ==> APP development code  (java code)
+src/main/resources ==>  non java for development
+src/test/java  ==> this for unit test cases 
+src/test/resources ==> test data etc..
+
+target
+
+pom.xml  ==> this will have all the dependencies (means the jar or plugins required for project)
+
+-----------------------------------------------
+
+Data Driven Framework 
+
+Here data can be from any source 
+
+excels , txt ,json , data base etc ..
+
+
+how to achive data paramterization?
+
+in testNG
+
+
+
+-------------------------------
+24th July Monday
+-------------------------------
+
+how to achive data paramterization?
+
+in testNG
+
+@DataProvider
+
+reyaz0607	reyaz123	Adactin.com - Search Hotel
+reyaz0607	reyaz456	Adactin.com - Hotel Reservation System
+reyaz1212	reyaz123	Adactin.com - Hotel Reservation System
+reyaz1212	reyaz456	Adactin.com - Hotel Reservation System	
+
+
+-------------------------------
+25th July Tuesday
+-------------------------------
+
+Keyword Driven Framework
+
+for every action we will create a keyword and write a corresponding method
+
+
+GenericKeywords
+
+ValidationKeywords
+
+ApplicationKeywords
+
+
+
+TestNG Annotations:
+
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="regression.ValidateLogin"/>
+	  
+@BeforeSuite
+@BeforeTest
+@BeforeClass
+@BeforeMethod
+@Test
+@AfterMethod
+@AfterClass
+@AfterTest
+@AfterSuite
+
+
+
+
+
+@DataProvider
+
+
+-------------------------------
+26th July Wednesday
+-------------------------------
+
+POM (Page Object Model)
+
+this is design pattern applied for framework
+
+Web apps consists of differnt flows or journeys or behaviours or screen
+
+Page Object Model is also called Object Repository Model 
+
+Here Page means a Java Class which includes 
+
+Objects (WebElement in that page )
+
+Actions (methods that can be applied on those object)
+
+
+--------------------
+PageFactory 
+
+used to define WebELement using some annotations
+
+@FindBy
+ 

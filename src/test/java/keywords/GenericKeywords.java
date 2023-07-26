@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import base.BaseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -97,5 +98,14 @@ public class GenericKeywords extends BaseTest {
 		return by;
 				
 	}
+	
+	public void selectOptionFromDropdown(String locatorKey,String option)
+	{
+		new Select(getElement(locatorKey)).selectByVisibleText(option);
+	}
 
+	public void clear(String locatorKey)
+	{
+		getElement(locatorKey).clear();
+	}
 }
